@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Abp.Dummy.Project.DbMigrator": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

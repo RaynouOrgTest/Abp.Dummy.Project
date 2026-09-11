@@ -1,0 +1,114 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "5.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.Account": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.Identity": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "10.4.1",
+      "isInstalled": true,
+      "creationTime": "09/11/2026 20:12:52 +00:00"
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "Abp.Dummy.Project.Application": {
+      "path": "src/Abp.Dummy.Project.Application/Abp.Dummy.Project.Application.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.Application.Tests": {
+      "path": "test/Abp.Dummy.Project.Application.Tests/Abp.Dummy.Project.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dummy.Project.Domain.Shared": {
+      "path": "src/Abp.Dummy.Project.Domain.Shared/Abp.Dummy.Project.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.Application.Contracts": {
+      "path": "src/Abp.Dummy.Project.Application.Contracts/Abp.Dummy.Project.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.HttpApi": {
+      "path": "src/Abp.Dummy.Project.HttpApi/Abp.Dummy.Project.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.HttpApi.Client": {
+      "path": "src/Abp.Dummy.Project.HttpApi.Client/Abp.Dummy.Project.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.EntityFrameworkCore.Tests": {
+      "path": "test/Abp.Dummy.Project.EntityFrameworkCore.Tests/Abp.Dummy.Project.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dummy.Project.EntityFrameworkCore": {
+      "path": "src/Abp.Dummy.Project.EntityFrameworkCore/Abp.Dummy.Project.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.TestBase": {
+      "path": "test/Abp.Dummy.Project.TestBase/Abp.Dummy.Project.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dummy.Project.Domain.Tests": {
+      "path": "test/Abp.Dummy.Project.Domain.Tests/Abp.Dummy.Project.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dummy.Project.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Abp.Dummy.Project.HttpApi.Client.ConsoleTestApp/Abp.Dummy.Project.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dummy.Project.DbMigrator": {
+      "path": "src/Abp.Dummy.Project.DbMigrator/Abp.Dummy.Project.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.HttpApi.Host": {
+      "path": "src/Abp.Dummy.Project.HttpApi.Host/Abp.Dummy.Project.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dummy.Project.Domain": {
+      "path": "src/Abp.Dummy.Project.Domain/Abp.Dummy.Project.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

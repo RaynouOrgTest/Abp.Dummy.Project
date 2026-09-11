@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+concurrency:
+  group: release-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Determine version bump from PR label
+        id: bump
+        env:
+          LABELS_JSON: ${{ toJson(github.event.pull_request.labels) }}
+        run: |
+          BUMP=$(bash etc/scripts/ci/resolve-bump.sh)
+          echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
+
+      - name: Compute new version
+        id: version
+        run: bash etc/scripts/ci/compute-version.sh "${{ steps.bump.outputs.bump }}"
+
+      - name: Bump common.props and angular/package.json
+        run: bash etc/scripts/ci/bump-version-files.sh "${{ steps.version.outputs.current }}" "${{ steps.version.outputs.new }}"
+
+      - name: Commit and tag version bump
+        run: bash etc/scripts/ci/commit-and-tag.sh "${{ steps.version.outputs.new }}"
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "yarn"
+          cache-dependency-path: angular/yarn.lock
+
+      - name: Publish backend (HttpApi.Host)
+        run: dotnet publish src/Abp.Dummy.Project.HttpApi.Host/Abp.Dummy.Project.HttpApi.Host.csproj -c Release -o artifacts/backend
+
+      - name: Publish DbMigrator
+        run: dotnet publish src/Abp.Dummy.Project.DbMigrator/Abp.Dummy.Project.DbMigrator.csproj -c Release -o artifacts/dbmigrator
+
+      - name: Build frontend (Angular)
+        working-directory: angular
+        run: |
+          yarn install --frozen-lockfile
+          yarn build:prod
+
+      - name: Package artifacts
+        run: bash etc/scripts/ci/package-artifacts.sh "${{ steps.version.outputs.new }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.new }}
+          name: v${{ steps.version.outputs.new }}
+          generate_release_notes: true
+          files: release-assets/*.zip
+          token: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Sync main back into dev
+        run: bash etc/scripts/ci/sync-dev.sh

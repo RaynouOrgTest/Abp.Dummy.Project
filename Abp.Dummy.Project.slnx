@@ -1,0 +1,23 @@
+<Solution>
+    <Configurations>
+        <Platform Name="Any CPU" />
+    </Configurations>
+    <Folder Name="/src/">
+        <Project Path="src/Abp.Dummy.Project.Domain/Abp.Dummy.Project.Domain.csproj" />
+        <Project Path="src/Abp.Dummy.Project.Application/Abp.Dummy.Project.Application.csproj" />
+        <Project Path="src/Abp.Dummy.Project.EntityFrameworkCore/Abp.Dummy.Project.EntityFrameworkCore.csproj" />
+        <Project Path="src/Abp.Dummy.Project.Domain.Shared/Abp.Dummy.Project.Domain.Shared.csproj" />
+        <Project Path="src/Abp.Dummy.Project.Application.Contracts/Abp.Dummy.Project.Application.Contracts.csproj" />
+        <Project Path="src/Abp.Dummy.Project.HttpApi/Abp.Dummy.Project.HttpApi.csproj" />
+        <Project Path="src/Abp.Dummy.Project.HttpApi.Client/Abp.Dummy.Project.HttpApi.Client.csproj" />
+        <Project Path="src/Abp.Dummy.Project.HttpApi.Host/Abp.Dummy.Project.HttpApi.Host.csproj" />
+        <Project Path="src/Abp.Dummy.Project.DbMigrator/Abp.Dummy.Project.DbMigrator.csproj" />
+    </Folder>
+    <Folder Name="/test/">
+        <Project Path="test/Abp.Dummy.Project.Application.Tests/Abp.Dummy.Project.Application.Tests.csproj" />
+        <Project Path="test/Abp.Dummy.Project.EntityFrameworkCore.Tests/Abp.Dummy.Project.EntityFrameworkCore.Tests.csproj" />
+        <Project Path="test/Abp.Dummy.Project.TestBase/Abp.Dummy.Project.TestBase.csproj" />
+        <Project Path="test/Abp.Dummy.Project.Domain.Tests/Abp.Dummy.Project.Domain.Tests.csproj" />
+        <Project Path="test/Abp.Dummy.Project.HttpApi.Client.ConsoleTestApp/Abp.Dummy.Project.HttpApi.Client.ConsoleTestApp.csproj" />
+    </Folder>
+</Solution>

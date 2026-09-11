@@ -1,0 +1,23 @@
+name: PR Release Label Check
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled, synchronize]
+    branches: [main]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  check-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure exactly one release label is set
+        env:
+          LABELS_JSON: ${{ toJson(github.event.pull_request.labels) }}
+        run: |
+          BUMP=$(bash etc/scripts/ci/resolve-bump.sh)
+          echo "OK: label de release encontrada -> release/$BUMP"

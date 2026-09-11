@@ -1,0 +1,39 @@
+// EJEMPLO de referencia para devs y para quien configure el pipeline de CI/CD.
+// No se usa en runtime (Angular/nginx sirven el `dynamic-env.json` real, sin
+// comentarios, del mismo folder).
+//
+// Cómo funciona:
+// 1. El pipeline de CI/CD genera/inyecta `dynamic-env.json` (mismo folder que
+//    este archivo) con los valores reales de cada entorno antes de construir
+//    o desplegar la imagen (ver Dockerfile / Dockerfile.local).
+// 2. El servidor web sirve ese archivo en el endpoint `/getEnvConfig` (con headers
+//    CORS) en vez de exponerlo directo, para poder llamarlo desde otros
+//    orígenes si hace falta.
+// 3. environment.prod.ts hace fetch a `/getEnvConfig` y le hace un deepmerge
+//    encima de sus valores base (remoteEnv.mergeStrategy: 'deepmerge').
+//
+// Por el deepmerge, aquí solo hace falta lo que cambia por entorno (las URLs).
+// Todo lo que ya es fijo en environment.prod.ts (clientId, scope, name,
+// rootNamespace, etc.) NO hace falta repetirlo, salvo que ese entorno
+// puntual también lo necesite distinto.
+{
+  "application": {
+    // Dominio público del frontend (esta SPA)
+    "baseUrl": "https://app.dummyproject.com"
+  },
+  "oAuthConfig": {
+    // Dominio del AuthServer/API, siempre con slash final
+    "issuer": "https://api.dummyproject.com/",
+    // Debe coincidir con application.baseUrl
+    "redirectUri": "https://app.dummyproject.com"
+  },
+  "apis": {
+    "default": {
+      "url": "https://api.dummyproject.com"
+    },
+    "AbpAccountPublic": {
+      // Normalmente el mismo host que oAuthConfig.issuer, SIN slash final
+      "url": "https://api.dummyproject.com"
+    }
+  }
+}

@@ -11,6 +11,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: read
 
 jobs:
   release:
@@ -27,8 +28,11 @@ jobs:
       - name: Determine version bump from PR label
         id: bump
         env:
-          LABELS_JSON: ${{ toJson(github.event.pull_request.labels) }}
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          LABELS_JSON=$(gh api "repos/${{ github.repository }}/issues/${PR_NUMBER}/labels")
+          export LABELS_JSON
           BUMP=$(bash etc/scripts/ci/resolve-bump.sh)
           echo "bump=$BUMP" >> "$GITHUB_OUTPUT"
 
